@@ -25,8 +25,8 @@ export default function AppNavbar() {
       href: "/",
     },
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Library",
+      href: "/library",
     },
   ];
 
@@ -38,8 +38,8 @@ export default function AppNavbar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <IconGavel />
-          <p className="font-bold text-inherit">Not a Concierge</p>
+          <IconGavel className="w-10 h-10 mr-2" />
+          <p className="font-bold text-inherit text-2xl lg:text-4xl">Not a Concierge</p>
         </NavbarBrand>
       </NavbarContent>
 

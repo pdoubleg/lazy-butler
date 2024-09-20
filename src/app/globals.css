@@ -26,7 +26,3 @@ body {
   }
 }
 
-.link-hover:hover {
-  color: #1e40af; /* Example: change to a blue shade on hover */
-  transition: color 0.3s ease;
-}

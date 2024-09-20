@@ -10,7 +10,11 @@
     "format": "prettier src/ --write"
   },
   "dependencies": {
+    "@nextui-org/card": "^2.0.34",
     "@nextui-org/react": "^2.4.8",
+    "@nextui-org/skeleton": "^2.0.32",
+    "@nextui-org/system": "^2.2.6",
+    "@nextui-org/theme": "^2.2.11",
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tabler/icons-react": "^3.17.0",
     "axios": "^1.7.7",
@@ -20,6 +24,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
