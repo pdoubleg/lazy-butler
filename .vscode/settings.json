@@ -11,6 +11,7 @@
 "editor.defaultFormatter": "mikoz.composite-formatter",
 "cSpell.words": [
   "Jiti",
+  "NEXTAUTH",
   "nextui",
   "tabler",
   "tailwindcss"

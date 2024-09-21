@@ -12,23 +12,29 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import { IconGavel } from "@tabler/icons-react";
+import { IconBrandLoom } from "@tabler/icons-react";
+import { useSession } from "next-auth/react";
 
+import AuthButton from "./auth-button";
 import { ThemeSwitcher } from "./theme-switcher";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { status } = useSession();
 
   const menuItems = [
     {
       label: "Home",
       href: "/",
     },
-    {
-      label: "Library",
-      href: "/library",
-    },
   ];
+
+  if (status === "authenticated") {
+    menuItems.push({
+      label: "Profile",
+      href: "/profile",
+    });
+  }
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -38,10 +44,12 @@ export default function AppNavbar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <IconGavel className="w-10 h-10 mr-2" />
-          <p className="font-bold text-inherit text-2xl lg:text-4xl">Not a Concierge</p>
+          <IconBrandLoom className="w-10 h-10 mr-2" />
+          <p className="font-bold text-inherit text-2xl lg:text-4xl">AutoComps-GPT</p>
         </NavbarBrand>
       </NavbarContent>
+
+
 
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         {menuItems.map((item, index) => (
@@ -53,6 +61,9 @@ export default function AppNavbar() {
         ))}
         <NavbarItem>
           <ThemeSwitcher />
+        </NavbarItem>
+        <NavbarItem>
+          <AuthButton minimal={false} />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
@@ -66,6 +77,9 @@ export default function AppNavbar() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <AuthButton />
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

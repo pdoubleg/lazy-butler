@@ -3,8 +3,9 @@
 
 import express, { Request, Response } from "express";
 import { z } from "zod";
-import { PredictionRequestSchema } from "../models/Prediction";
-import { runSingleInference } from "../utils/predictionUtils";
+import { PredictionRequestSchema } from "../models/prediction";
+import { runSingleInference } from "../utils/prediction-utils";
+
 
 const router = express.Router();
 

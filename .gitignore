@@ -46,3 +46,4 @@ backend/dist
 *.ps1
 *.map
 *node_modules
+.env.development

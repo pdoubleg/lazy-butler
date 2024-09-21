@@ -12,7 +12,7 @@ import {
   PastPredictionEntrySchema,
   PredictionRequest,
   PredictionRequestSchema,
-} from "../models/Prediction";
+} from "../models/prediction";
 import {
   DOMAIN_KNOWLEDGE_PATH,
   PREVIOUS_PREDICTIONS_PATH,
@@ -21,18 +21,20 @@ import {
   readJSON,
   sleep,
   VALID_LABELS_PATH,
-} from "./fileUtils";
-import { openai } from "./openAIClient";
+} from "./file-utils";
+import { openai } from "./openai-client";
 
-  interface ValidLabels {
-    [key: string]: string;
+interface ValidLabels {
+  [key: string]: string;
+
+
   }
   
 export const buildModelCorpusData = async (): Promise<string[]> => {
   const sections: string[] = [];
   let currentSection = "";
 
-  const data = await readFile(DOMAIN_KNOWLEDGE_PATH);
+  const data = readFile(DOMAIN_KNOWLEDGE_PATH);
   if (!data) {
     console.error("Failed to read domain knowledge data");
     return [];

@@ -1,10 +1,14 @@
-import { ZodError, z } from "zod";
 import { createEnv } from "@t3-oss/env-nextjs";
+import { ZodError, z } from "zod";
 
 
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "production"]),
+    NEXTAUTH_URL: z.string().url(),
+    NEXTAUTH_SECRET: z.string(),
+    GOOGLE_CLIENT_ID: z.string(),
+    GOOGLE_CLIENT_SECRET: z.string(),
   },
   onValidationError: (error: ZodError) => {
     console.error(
@@ -17,3 +21,4 @@ export const env = createEnv({
   // eslint-disable-next-line n/no-process-env
   experimental__runtimeEnv: process.env,
 });
+

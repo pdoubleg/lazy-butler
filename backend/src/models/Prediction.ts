@@ -1,8 +1,7 @@
-/* eslint-disable check-file/filename-naming-convention */
 // src/models/Prediction.ts
 
 import { z } from "zod";
-import { getValidLabels } from "../utils/fileUtils";
+import { getValidLabels } from "../utils/file-utils";
 
 // PastPredictionEntry Schema
 export const PastPredictionEntrySchema = z.object({
