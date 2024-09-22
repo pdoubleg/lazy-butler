@@ -9,6 +9,9 @@ export const env = createEnv({
     NEXTAUTH_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
+    OPENAI_API_KEY: z.string(),
+    DEFAULT_PROMPT_FILE: z.string(),
+    DEFAULT_TOPIC: z.string(),
   },
   onValidationError: (error: ZodError) => {
     console.error(

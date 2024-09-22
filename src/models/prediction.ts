@@ -1,7 +1,5 @@
-// src/models/Prediction.ts
-
+import { getValidLabels } from "@/utils/file-utils";
 import { z } from "zod";
-import { getValidLabels } from "../utils/file-utils";
 
 // PastPredictionEntry Schema
 export const PastPredictionEntrySchema = z.object({

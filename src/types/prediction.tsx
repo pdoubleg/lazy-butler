@@ -1,7 +1,4 @@
-// src/types/Prediction.ts
-
 import { z } from "zod";
-
 
 export const PredictionSchema = z.object({
   chain_of_thought: z.string(),

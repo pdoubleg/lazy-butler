@@ -1,18 +1,15 @@
-/* eslint-disable n/no-process-env */
-/* eslint-disable check-file/filename-naming-convention */
-// src/utils/predictionUtils.ts
-
-import Instructor from "@instructor-ai/instructor";
-import OpenAI from "openai";
-import { performance } from "perf_hooks";
-import { z } from "zod";
+import { env } from "@/env/server";
 import {
   CompletionUsageSchema,
   MultiPredictSchema,
   PastPredictionEntrySchema,
   PredictionRequest,
   PredictionRequestSchema,
-} from "../models/prediction";
+} from "@/models/prediction";
+import Instructor from "@instructor-ai/instructor";
+import OpenAI from "openai";
+import { performance } from "perf_hooks";
+import { z } from "zod";
 import {
   DOMAIN_KNOWLEDGE_PATH,
   PREVIOUS_PREDICTIONS_PATH,
@@ -239,12 +236,12 @@ async function rankPastPredictions(
       }
   
       // Build prompt
-      const prompt = buildOmniPrompt(query, process.env.DEFAULT_TOPIC || "", sortedExamples[0], domainKnowledge);
+      const prompt = buildOmniPrompt(query, env.DEFAULT_TOPIC || "", sortedExamples[0], domainKnowledge);
   
       type MultiPredict = z.infer<typeof MultiPredictSchema>;
       
       const oai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY ?? undefined,
+        apiKey: env.OPENAI_API_KEY ?? undefined,
       });
       
       const client = Instructor({
@@ -252,7 +249,7 @@ async function rankPastPredictions(
         mode: "FUNCTIONS"
       });
 
-      async function getPredictions(prompt: string): Promise<MultiPredict> {
+      const getPredictions = async (prompt: string): Promise<MultiPredict> => {
         try {
           const predictions = await client.chat.completions.create({
             messages: [{ role: "user", content: prompt }],
@@ -271,7 +268,7 @@ async function rankPastPredictions(
           }
           throw e; // Re-throw the error after logging
         }
-      }
+      };
 
       const multiPredict = await getPredictions(prompt);
 

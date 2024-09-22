@@ -1,5 +1,3 @@
-// src/components/PredictionForm.tsx
-
 "use client";
 
 import { PredictionRequest } from "@/types/prediction";
@@ -10,7 +8,6 @@ import axios from "axios";
 import React, { useState } from "react";
 
 // Skeleton component for loading state
-
 const PredictionSkeleton: React.FC = () => (
   <Card className="mb-4">
     <CardHeader className="flex justify-between">
@@ -38,7 +35,7 @@ const PredictionForm: React.FC = () => {
       setError(null);
   
       try {
-        const response = await axios.post("http://localhost:5000/api/predict", { query });
+        const response = await axios.post("/api/predict", { query });
         setPredictions(prevPredictions => [response.data, ...prevPredictions]);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
